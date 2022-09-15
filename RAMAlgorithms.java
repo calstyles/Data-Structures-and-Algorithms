@@ -37,7 +37,7 @@ public class RAMAlgorithms {
 	
 	/**
 	 * 
-	 * @param arr1 The array we want to search the value
+	 * @param arr1 The array we want to search for the statistic
 	 * @param p the lower boundary
 	 * @param r the upper boundary
 	 * @param i the ith order of statistic
