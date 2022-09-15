@@ -7,7 +7,13 @@ import java.util.*;
  * CSCI 333
  * RAM Algorithms
  * 
+ * The purpose of this assignment is to create 2 algorithms,
+ * the first one being a counting sort algorithm and the 
+ * other being a quick select algorithm.
+ * 
  */
+
+
 public class RAMAlgorithms {
 	
 	/**
@@ -40,8 +46,8 @@ public class RAMAlgorithms {
 	 * @param arr1 The array we want to search for the statistic
 	 * @param p the lower boundary
 	 * @param r the upper boundary
-	 * @param i the ith order of statistic
-	 * @return
+	 * @param i the i'th order of statistic
+	 * @return The subproblem that contains the statistic
 	 */
 	
 	public static int rqHelper(int[] arr1, int p, int r, int i) {
@@ -54,7 +60,6 @@ public class RAMAlgorithms {
 			return arr[p];
 		}
 		Random rand = new Random();
-//		System.out.println("int z = rand.nextInt((" + r + "-" + p + ")+1) + " + p + ";");
 		int z = rand.nextInt(r - p) + p;
 
 		swap(arr, z, r);
