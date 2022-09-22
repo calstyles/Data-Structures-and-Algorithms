@@ -6,10 +6,13 @@ public class ChainedHashTable {
 
 	
 	public ChainedHashTable(int n) {
+		int m = 0;
 		int helper = (int)(Math.log(n) / Math.log(2));
-		int m = (int) Math.pow(2, helper + 1);
-		linkedListArray = new LinkedList<Integer>[m];
-		
+		int maxLength = (int) Math.pow(2, helper + 1);
+		while(m != maxLength) {
+			linkedListArray[m] = new LinkedList<Integer>();
+			m++;
+		}		
 	}
 	
 	public insert() {
@@ -28,7 +31,7 @@ public class ChainedHashTable {
 		
 	}
 	
-	private hash() {
-		
+	private int hash(int key) {
+		return 1;
 	}
 }
