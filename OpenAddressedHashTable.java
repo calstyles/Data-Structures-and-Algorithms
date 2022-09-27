@@ -27,14 +27,15 @@ public class OpenAddressedHashTable {
 //	return NULL
 	
 	private int hash(Integer x){  
-		  int hashValue = x.hashCode();
-	  
-	      hashValue %= integerArray.length;
-	  
-	      if (hashValue < 0)
-	          hashValue += integerArray.length;
-	  
-	      return hashValue;
+		int key = x;
+		double A = Math.random();
+		int hashValue = (int) (integerArray.length * ((key * A)%1));
+		return hashValue;
+	}
+	
+	private int hash(Integer x, int key) {
+		
+		int hashValue = hash(key) + i * (key % (integerArray.length-1)) + 1) % integerArray.length;
 	}
 
 	
