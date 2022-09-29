@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.LinkedList;
 
 
@@ -8,7 +9,9 @@ public class ChainedHashTable {
 	public ChainedHashTable(int n) {
 		int helper = (int)(Math.log(n) / Math.log(2));
 		int m = (int) Math.pow(2, helper + 1);
-		linkedArray = new LinkedList[m];		
+		for(int i = 0; i < linkedArray.length - 1; i++) {
+			linkedArray[i] = new LinkedList<Integer>(Arrays.asList(m));		
+		}
 	}
 	
 	public void insert(int x) {
@@ -20,7 +23,7 @@ public class ChainedHashTable {
 	}
 	
 	public int search(int key) {
-		return linkedArray[key];
+		return linkedArray[hash(key)];
 	}
 	
 	public void printTable() {
