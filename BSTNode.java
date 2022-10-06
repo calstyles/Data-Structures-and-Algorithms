@@ -8,11 +8,11 @@ public class BSTNode {
 	int size;
 	
 	public BSTNode(int key) {
-		left = null;
-		right = null;
-		p = null;
+		this.left = null;
+		this.right = null;
+		this.p = null;
 		this.key = key;
-		size = 0;
+		this.size = 0;
 	}
 	
 	public int getKey() {
@@ -45,6 +45,10 @@ public class BSTNode {
 	
 	public void setLeft(BSTNode newLeft) {
 		this.left = newLeft;
+	}
+	
+	public void setSize(int size) {
+		this.size = size;
 	}
 	
 }
