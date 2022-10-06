@@ -5,12 +5,14 @@ public class BSTNode {
 	public BSTNode right;
 	public BSTNode p;
 	private int key;
+	int size;
 	
 	public BSTNode(int key) {
 		left = null;
 		right = null;
 		p = null;
 		this.key = key;
+		size = 0;
 	}
 	
 	public int getKey() {
