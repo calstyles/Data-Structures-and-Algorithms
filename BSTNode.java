@@ -47,6 +47,10 @@ public class BSTNode {
 		this.left = newLeft;
 	}
 	
+	public int getSize() {
+        return size;
+    }
+	
 	public void setSize(int size) {
 		this.size = size;
 	}

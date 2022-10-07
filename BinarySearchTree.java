@@ -16,15 +16,19 @@ public class BinarySearchTree {
 	private void transplant(BinarySearchTree T, BSTNode u, BSTNode v) {
 		if(u.p == null) {
 			T.root = v;
-		}else if(u == u.p.left){
-			u.p.left = v;
-		}else u.p.right = v;
+		}else if(u == u.p.getLeft()){
+			u.getP().setLeft(v);
+		}else u.getP().setRight(v);
 		if(v != null) {
-			v.p = u.p;
+			v.setP(u.getP());
 		}
 	}
 	
-	private BSTNode searchHelper(BSTNode x, int k) {
+	public BSTNode search(int key) {
+		return search(root, key);
+	}
+	
+	private BSTNode search(BSTNode x, int k) {
 		if(x == null) {
 			return null;
 		}
@@ -32,139 +36,198 @@ public class BinarySearchTree {
 			return x;
 		}
 		if(k < x.getKey()) {
-			return searchHelper(x.left, k);
+			return search(x.getLeft(), k);
 		}
-		else return searchHelper(x.right, k);
+		else return search(x.getRight(), k);
 	}
 	
-	private BSTNode minimumHelper(BSTNode x) {
-		while(x.left != null) {
-			x = x.left;
+	public BSTNode minimum() {
+		return minimum(root);
+	}
+	
+	private BSTNode minimum(BSTNode x) {
+		while(x.getLeft() != null) {
+			x = x.getLeft();
 		}
 		return x;
 	}
 	
-	private BSTNode maximumHelper(BSTNode x) {
-		while(x.right != null) {
-			x = x.right;
+	public BSTNode maximum() {
+		return maximum(root);
+	}
+	
+	private BSTNode maximum(BSTNode x) {
+		while(x.getRight() != null) {
+			x = x.getRight();
 		}
 		return x;
 	}
 	
-	private BSTNode predecessorHelper(BSTNode x) {
-		if(x.left != null) {
-			return maximumHelper(x.left);
+	public BSTNode predecessor(int key) {
+		BSTNode node = search(key);
+		return predecessor(node);
+	}
+	
+	private BSTNode predecessor(BSTNode x) {
+		if(x.getLeft() != null) {
+			return maximum(x.getLeft());
 		}
-		while(x.p != null && x == x.p.left) {
-			x = x.p;
+		while(x.getP() != null && x == x.getP().getLeft()) {
+			x = x.getP();
 		}
 		
-		return x.p;
+		return x.getP();
 	}
 	
-	private BSTNode successorHelper(BSTNode x) {
-		if(x.right != null) {
-			return minimumHelper(x.right);
-		}
-		while(x.p != null && x == x.p.right) {
-			x = x.p;
-		}
-		return x.p;
+	public BSTNode successor(int key) {
+		BSTNode node = search(key);
+		return successor(node);
 	}
 	
-	private void insertHelper(BinarySearchTree T, BSTNode z) {
+	private BSTNode successor(BSTNode x) {
+		if(x.getRight() != null) {
+			return minimum(x.getRight());
+		}
+		while(x.getP() != null && x == x.getP().getRight()) {
+			x = x.getP();
+		}
+		return x.getP();
+	}
+	
+	public void insert(BSTNode node) {
+		insert(this, node);
+	}
+	
+	private void insert(BinarySearchTree T, BSTNode z) {
 		BSTNode y = null;
 		BSTNode x = T.root;
 		while(x != null) {
 			y = x;
 			if(z.getKey() < x.getKey()) {
-				x = x.left;
+				x = x.getLeft();
 			}
-			else { 
-				x = x.right;
-			}
-		}
-		z.p = y;
-		if(y == null) {
-			T.root = z;
-			size++;
-		}else if(z.getKey() < y.getKey()) {
-			y.left = z;
-			size++;
-		}
-		else {
-			y.right = z;
-			size++;
+			else x = x.getRight();
+			
 		}
 		
+		z.setP(y);
+		if(y == null) {
+			T.root = z;
+		}else if(z.getKey() < y.getKey()) {
+			y.setLeft(z);
+		}
+		else {
+			y.setRight(z);
+		}
+		size++;
+
 	}
 	
-	private void deleteHelper(BinarySearchTree T, BSTNode z) {
-		if(z.left == null) {
-			transplant(T, z, z.right);
-		}else if(z.right == null) {
-			transplant(T, z, z.left);
+	public void delete(BSTNode node) {
+		delete(this, node);
+	}
+	
+	private void delete(BinarySearchTree T, BSTNode z) {
+		if(z.getLeft() == null) {
+			transplant(T, z, z.getRight());
+		}else if(z.getRight() == null) {
+			transplant(T, z, z.getLeft());
 		}else {
-			BSTNode y = minimumHelper(z.right);
+			BSTNode y = minimum(z.getRight());
 			if(y.p != z) {
-				transplant(T, y, y.right);
-				y.right = z.right;
-				y.right.p = y;
-				size--;
+				transplant(T, y, y.getRight());
+				y.setRight(z.getRight());
+				y.getRight().setP(y);
 			}
 			transplant(T, z, y);
-			y.left = z.left;
-			y.left.p = y;
-			size--;
+			y.setLeft(z.getLeft());
+			y.getLeft().setP(y);
+			
+		}
+		size--;
+	}
+	
+	public void PreOrderTraversal() {
+		PreOrderTraversal(this.root);
+	}
+	
+	private void PreOrderTraversal(BSTNode T) {
+		if(T != null) {
+			System.out.print(T.getKey() + " ");
+			PreOrderTraversal(T.getLeft());
+			PreOrderTraversal(T.getRight());
 		}
 	}
 	
-	private void PreOrderTraversalHelper(BSTNode T) {
+	public void InOrderTraversal() {
+		InOrderTraversal(this.root);
+	}
+	
+	private void InOrderTraversal(BSTNode T) {
 		if(T != null) {
-			System.out.println(T.getKey() + " ");
-			PreOrderTraversalHelper(T.left);
-			PreOrderTraversalHelper(T.right);
+			InOrderTraversal(T.getLeft());
+			System.out.print(T.getKey() + " ");
+			InOrderTraversal(T.getRight());
 		}
 	}
 	
-	private void InOrderTraversalHelper(BSTNode T) {
+	public void PostOrderTraversal() {
+		PostOrderTraversal(this.root);
+	}
+	
+	private void PostOrderTraversal(BSTNode T) {
 		if(T != null) {
-			InOrderTraversalHelper(T.left);
-			System.out.println(T.getKey() + " ");
-			InOrderTraversalHelper(T.right);
+			PostOrderTraversal(T.getLeft());
+			PostOrderTraversal(T.getRight());
+			System.out.print(T.getKey() + " ");
 		}
 	}
 	
-	private void PostOrderTraversalHelper(BSTNode T) {
-		if(T != null) {
-			PostOrderTraversalHelper(T.left);
-			PostOrderTraversalHelper(T.right);
-			System.out.println(T.getKey() + " ");
-		}
+	public BSTNode select(int i) {
+		return select(root, i);
 	}
 
 	private BSTNode select(BSTNode x, int i) {
-		int r = x.left.size + 1;
+		int r = x.getLeft().getSize() + 1;
+		
+		if(x.getLeft() == null) {
+			r = 1;
+		}
+		
 		if(i == r) {
 			return x;
 		}
 		
 		else if(i < r) {
-			return select(x.left, i);
+			return select(x.getLeft(), i);
 		}
 		else {
-			return select(x.right, i - r);
+			System.out.println(x.getRight());
+			System.out.println(i);
+			return select(x.getRight(), i - r);
 		}
 	}
 	
+	public int rank(int i) {
+		BSTNode node = search(i);
+		return rank(this, node);
+	}
+	
 	private int rank(BinarySearchTree T, BSTNode x) {
-		int r = x.left.size + 1;
+		int r = x.getLeft().getSize() + 1;
+		
+		if(x.getLeft() == null) {
+			r = 1;
+		}
+		
 		BSTNode y = x;
 		while(y != T.root) {
-			if(y == y.p.right) {
-				r = r + y.p.left.size + 1;
+			if(y == y.getP().getRight()) {
+				r = r + y.getP().getLeft().getSize() + 1;
+			}else {
+				r++;
 			}
-			y = y.p;
+			y = y.getP();
 		}
 		return r;
 	}
