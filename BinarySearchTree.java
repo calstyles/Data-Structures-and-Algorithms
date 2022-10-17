@@ -1,13 +1,38 @@
+/**
+ * 
+ * @author Caleb Styles
+ * October 7, 2022
+ * CSCI333
+ * Binary Search Tree
+ * 
+ * We are going to be implementing the Binary Search Tree data structure for this assignment.
+ * This class will consist of various different methods to manipulate and search through the
+ * data of the tree. The methods of this assignment are as such: inserting nodes, deleting them 
+ * with the transplant and delete methods, searching for various nodes with the search, minimum, 
+ * maximum, predecessor and successor methods, traversing through the tree with PreOrder, InOrder,
+ * and PostOrder Traversals, and using order statistic queries with the select and rank methods.
+ *
+ */
+
 
 public class BinarySearchTree {
 
 	public BSTNode root;
 	public int size;
+
+	/**
+	 * Constructor of the tree
+	 */
 	
 	public BinarySearchTree(){
 		root = null;
 		size = 0;
 	}
+	
+	/**
+	 * 
+	 * @return the size of the tree
+	 */
 	
 	public int getSize() {
 		return size;
@@ -23,6 +48,13 @@ public class BinarySearchTree {
 			v.setP(u.getP());
 		}
 	}
+	
+	/**
+	 * Searches for the value inside the tree
+	 * 
+	 * @param key the value we want to search for inside the tree
+	 * @return the address of the value, null if not found
+	 */
 	
 	public BSTNode search(int key) {
 		return search(root, key);
@@ -41,6 +73,11 @@ public class BinarySearchTree {
 		else return search(x.getRight(), k);
 	}
 	
+	/**
+	 * 
+	 * @return the leftmost element of the tree
+	 */
+	
 	public BSTNode minimum() {
 		return minimum(root);
 	}
@@ -52,6 +89,11 @@ public class BinarySearchTree {
 		return x;
 	}
 	
+	/**
+	 * 
+	 * @return the rightmost element of the tree
+	 */
+	
 	public BSTNode maximum() {
 		return maximum(root);
 	}
@@ -62,6 +104,12 @@ public class BinarySearchTree {
 		}
 		return x;
 	}
+	
+	/**
+	 * 
+	 * @param key the value we want to find the predecessor of
+	 * @return the closest right parent on the subtree
+	 */
 	
 	public BSTNode predecessor(int key) {
 		BSTNode node = search(key);
@@ -79,6 +127,12 @@ public class BinarySearchTree {
 		return x.getP();
 	}
 	
+	/**
+	 * 
+	 * @param key the value we want to find the successor of
+	 * @return the closest left parent on the subtree
+	 */
+	
 	public BSTNode successor(int key) {
 		BSTNode node = search(key);
 		return successor(node);
@@ -93,6 +147,12 @@ public class BinarySearchTree {
 		}
 		return x.getP();
 	}
+	
+	/**
+	 * Inserts a value into the tree
+	 * 
+	 * @param node the value we will insert into the tree
+	 */
 	
 	public void insert(BSTNode node) {
 		insert(this, node);
@@ -123,6 +183,12 @@ public class BinarySearchTree {
 
 	}
 	
+	/**
+	 * Deletes a value from the tree
+	 * 
+	 * @param node the value we want to delete from the tree
+	 */
+	
 	public void delete(BSTNode node) {
 		delete(this, node);
 	}
@@ -134,7 +200,7 @@ public class BinarySearchTree {
 			transplant(T, z, z.getLeft());
 		}else {
 			BSTNode y = minimum(z.getRight());
-			if(y.p != z) {
+			if(y.getP() != z) {
 				transplant(T, y, y.getRight());
 				y.setRight(z.getRight());
 				y.getRight().setP(y);
@@ -147,10 +213,14 @@ public class BinarySearchTree {
 		size--;
 	}
 	
+	/**
+	 * Traverses the tree with PreOrder; Prints the first time it touches elements
+	 */
+	
 	public void PreOrderTraversal() {
 		PreOrderTraversal(this.root);
 	}
-	
+
 	private void PreOrderTraversal(BSTNode T) {
 		if(T != null) {
 			System.out.print(T.getKey() + " ");
@@ -158,6 +228,10 @@ public class BinarySearchTree {
 			PreOrderTraversal(T.getRight());
 		}
 	}
+
+	/**
+	 * Traverses the tree InOrder; Prints the elements in order
+	 */
 	
 	public void InOrderTraversal() {
 		InOrderTraversal(this.root);
@@ -171,6 +245,10 @@ public class BinarySearchTree {
 		}
 	}
 	
+	/**
+	 * Traverses the tree in PostOrder; Prints the last time it touches elements
+	 */
+	
 	public void PostOrderTraversal() {
 		PostOrderTraversal(this.root);
 	}
@@ -183,15 +261,22 @@ public class BinarySearchTree {
 		}
 	}
 	
+	/**
+	 * Conducts a select query 
+	 * 
+	 * @param i the position we want to look for
+	 * @return the value in the i position
+	 */
+	
 	public BSTNode select(int i) {
 		return select(root, i);
 	}
 
 	private BSTNode select(BSTNode x, int i) {
-		int r = x.getLeft().getSize() + 1;
+		int r = 1;
 		
-		if(x.getLeft() == null) {
-			r = 1;
+		if(x.getLeft() != null) {
+			r = x.getLeft().getSize() + 1;;
 		}
 		
 		if(i == r) {
@@ -199,14 +284,21 @@ public class BinarySearchTree {
 		}
 		
 		else if(i < r) {
+			if(x.getLeft() == null)return null;
 			return select(x.getLeft(), i);
 		}
 		else {
-			System.out.println(x.getRight());
-			System.out.println(i);
+			if(x.getRight() == null) return null;
 			return select(x.getRight(), i - r);
 		}
 	}
+	
+	/**
+	 * Conducts a rank query
+	 * 
+	 * @param i the position where the element is found
+	 * @return the rank in reference to the entire tree
+	 */
 	
 	public int rank(int i) {
 		BSTNode node = search(i);
@@ -214,16 +306,18 @@ public class BinarySearchTree {
 	}
 	
 	private int rank(BinarySearchTree T, BSTNode x) {
-		int r = x.getLeft().getSize() + 1;
+		int r = 1;
 		
-		if(x.getLeft() == null) {
-			r = 1;
+		if(x.getLeft() != null) {
+			r = x.getLeft().getSize() + 1;
 		}
 		
 		BSTNode y = x;
 		while(y != T.root) {
-			if(y == y.getP().getRight()) {
-				r = r + y.getP().getLeft().getSize() + 1;
+			if(y == y.getP().getRight() && y.getP().getRight() != null) {
+				if(y.getP().getLeft() != null) {
+					r = r + y.getP().getLeft().getSize() + 1;
+				}
 			}else {
 				r++;
 			}
