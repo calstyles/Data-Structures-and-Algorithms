@@ -1,3 +1,15 @@
+/**
+ * 
+ * @author Caleb Styles
+ * October 7, 2022
+ * CSCI333
+ * BST Node
+ * 
+ * In this class, we will be implementing a Binary Search Tree Node to setup our Binary Search Tree.
+ * The BSTNode will take in a left node, a right node, a parent node, a key for the value of the node,
+ * and the size to track how large the Binary Search Tree is. There will be getters and setters for
+ * each variable that is a part of the BSTNode.
+ */
 
 public class BSTNode {
 
@@ -6,6 +18,11 @@ public class BSTNode {
 	public BSTNode p;
 	private int key;
 	int size;
+	
+	/**
+	 * 
+	 * @param key the value of the node
+	 */
 	
 	public BSTNode(int key) {
 		this.left = null;

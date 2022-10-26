@@ -50,14 +50,14 @@ public class BinarySearchTreeTester {
 		System.out.println();
 		System.out.println("ALL ORDER TRAVERSALS");
 		System.out.println();
-		System.out.println("PreOrderTraversal: ");
-		b1.PreOrderTraversal();
+		System.out.println("preOrderTraversal: ");
+		b1.preOrderTraversal();
 		System.out.println();
-		System.out.println("InOrderTraversal: ");
-		b1.InOrderTraversal();
+		System.out.println("inOrderTraversal: ");
+		b1.inOrderTraversal();
 		System.out.println();
-		System.out.println("PostOrderTraversal: ");
-		b1.PostOrderTraversal();
+		System.out.println("postOrderTraversal: ");
+		b1.postOrderTraversal();
 		System.out.println();
 		System.out.println();
 
@@ -80,29 +80,49 @@ public class BinarySearchTreeTester {
 		b1.delete(bNode20);
 		
 		
-		System.out.println("TREE SIZE: " + b1.getSize());
-		System.out.println("ONE MORE INORDER TRAVERSAL");
-		b1.InOrderTraversal();
+		System.out.println("UPDATED TREE SIZE: " + b1.getSize());
+		System.out.println("UPDATED INORDER TRAVERSAL");
+		b1.inOrderTraversal();
 		System.out.println();
 		
 		System.out.println();
-//		System.out.println("SELECT ALGORITHM");
-//
-//		System.out.println("SELECTING 1 " + b1.select(1));
-//		System.out.println("SELECTING 2 " + b1.select(2));
-//		System.out.println("SELECTING 7 " + b1.select(8));
-//		System.out.println("SELECTING 8 " + b1.select(4));
-//		System.out.println("SELECTING 9 " + b1.select(9));
+		System.out.println("SELECT ALGORITHM");
+
+		System.out.println("SELECTING 1: " + b1.select(1));
+		System.out.println("SELECTING 2: " + b1.select(2));
+		System.out.println("SELECTING 3: " + b1.select(3));
+		System.out.println("SELECTING 4: " + b1.select(4));
+		System.out.println("SELECTING 5: " + b1.select(5));
 		
 		System.out.println();
 		
 		System.out.println();
 		System.out.println("RANK ALGORITHM");
-		System.out.println("rank 1 " + b1.rank(1));
-		System.out.println("rank 2 " + b1.rank(2));
-		System.out.println("rank 3 " + b1.rank(3));
-		System.out.println("rank 4 " + b1.rank(4));
-		System.out.println("rank 5 " + b1.rank(5));
+		System.out.println("rank 1: " + b1.rank(bNode1));
+		System.out.println("rank 2: " + b1.rank(bNode2));
+		System.out.println("rank 3: " + b1.rank(bNode3));
+		System.out.println("rank 10: " + b1.rank(bNode10));
+		System.out.println("rank 19: " + b1.rank(bNode19));
 
+		System.out.println();
+		System.out.println("SUCCESSOR ALGORITHM");
+		System.out.println("Successor for 10: " + b1.successor(10));
+		System.out.println("Successor for 11: " + b1.successor(11));
+		System.out.println("Successor for 14: " + b1.successor(14));
+		System.out.println("Successor for 15: " + b1.successor(15));
+		System.out.println("Successor for 17: " + b1.successor(17));
+		
+		System.out.println();
+		System.out.println("PREDECESSOR ALGORITHM");
+		System.out.println("Predecessor for 1: " + b1.predecessor(1));
+		System.out.println("Predecessor for 7: " + b1.predecessor(7));
+		System.out.println("Predecessor for 10: " + b1.predecessor(10));
+		System.out.println("Predecessor for 13: " + b1.predecessor(13));
+		System.out.println("Predecessor for 19: " + b1.predecessor(19));
+
+		System.out.println();
+		System.out.println("MAXIMUM AND MINIMUM");
+		System.out.println("MAX NODE: " + b1.maximum());
+		System.out.println("MIN NODE: " + b1.minimum());
 	}
 }

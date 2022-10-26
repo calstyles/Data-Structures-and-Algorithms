@@ -217,15 +217,15 @@ public class BinarySearchTree {
 	 * Traverses the tree with PreOrder; Prints the first time it touches elements
 	 */
 	
-	public void PreOrderTraversal() {
-		PreOrderTraversal(this.root);
+	public void preOrderTraversal() {
+		preOrderTraversal(this.root);
 	}
 
-	private void PreOrderTraversal(BSTNode T) {
+	private void preOrderTraversal(BSTNode T) {
 		if(T != null) {
 			System.out.print(T.getKey() + " ");
-			PreOrderTraversal(T.getLeft());
-			PreOrderTraversal(T.getRight());
+			preOrderTraversal(T.getLeft());
+			preOrderTraversal(T.getRight());
 		}
 	}
 
@@ -233,15 +233,15 @@ public class BinarySearchTree {
 	 * Traverses the tree InOrder; Prints the elements in order
 	 */
 	
-	public void InOrderTraversal() {
-		InOrderTraversal(this.root);
+	public void inOrderTraversal() {
+		inOrderTraversal(this.root);
 	}
 	
-	private void InOrderTraversal(BSTNode T) {
+	private void inOrderTraversal(BSTNode T) {
 		if(T != null) {
-			InOrderTraversal(T.getLeft());
+			inOrderTraversal(T.getLeft());
 			System.out.print(T.getKey() + " ");
-			InOrderTraversal(T.getRight());
+			inOrderTraversal(T.getRight());
 		}
 	}
 	
@@ -249,14 +249,14 @@ public class BinarySearchTree {
 	 * Traverses the tree in PostOrder; Prints the last time it touches elements
 	 */
 	
-	public void PostOrderTraversal() {
-		PostOrderTraversal(this.root);
+	public void postOrderTraversal() {
+		postOrderTraversal(this.root);
 	}
 	
-	private void PostOrderTraversal(BSTNode T) {
+	private void postOrderTraversal(BSTNode T) {
 		if(T != null) {
-			PostOrderTraversal(T.getLeft());
-			PostOrderTraversal(T.getRight());
+			postOrderTraversal(T.getLeft());
+			postOrderTraversal(T.getRight());
 			System.out.print(T.getKey() + " ");
 		}
 	}
@@ -274,23 +274,25 @@ public class BinarySearchTree {
 
 	private BSTNode select(BSTNode x, int i) {
 		int r = 1;
-		
-		if(x.getLeft() != null) {
-			r = x.getLeft().getSize() + 1;;
-		}
-		
-		if(i == r) {
-			return x;
-		}
-		
-		else if(i < r) {
-			if(x.getLeft() == null)return null;
-			return select(x.getLeft(), i);
-		}
-		else {
-			if(x.getRight() == null) return null;
-			return select(x.getRight(), i - r);
-		}
+        if (x.getLeft() != null) {
+            r = x.getLeft().getSize() + 1;
+        }
+
+        if (i == r) {
+            return x;
+        } else if (i < r) {
+            if (x.getLeft() == null) {
+                return null;
+            }
+            return select(x.getLeft(), i);
+        }
+        else {
+            if (x.getRight() == null) {
+            	System.out.println(r);
+                return null;
+            }
+            return select(x.getRight(), i - r);
+        }
 	}
 	
 	/**
@@ -300,8 +302,7 @@ public class BinarySearchTree {
 	 * @return the rank in reference to the entire tree
 	 */
 	
-	public int rank(int i) {
-		BSTNode node = search(i);
+	public int rank(BSTNode node) {
 		return rank(this, node);
 	}
 	
@@ -311,15 +312,15 @@ public class BinarySearchTree {
 		if(x.getLeft() != null) {
 			r = x.getLeft().getSize() + 1;
 		}
-		
 		BSTNode y = x;
 		while(y != T.root) {
 			if(y == y.getP().getRight() && y.getP().getRight() != null) {
 				if(y.getP().getLeft() != null) {
 					r = r + y.getP().getLeft().getSize() + 1;
 				}
-			}else {
-				r++;
+				else {
+					r++;
+				}
 			}
 			y = y.getP();
 		}
