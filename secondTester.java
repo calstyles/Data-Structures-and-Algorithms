@@ -1,4 +1,3 @@
-
 public class secondTester {
 	public static void main(String[] args) {
 		BSTNode bNode1 = new BSTNode(12);
@@ -64,8 +63,16 @@ public class secondTester {
 		b1.insert(bNode29);
 		b1.insert(bNode30);
 		
-		b1.delete(bNode24);
+		b1.delete(bNode13);
+		b1.delete(bNode28);
+		b1.delete(bNode30);
+		b1.delete(bNode27);
+		b1.delete(bNode19);
+		b1.delete(bNode2);
 		b1.delete(bNode23);
+		b1.delete(bNode24);
+		b1.delete(bNode11);
+		b1.delete(bNode17);
 		
 		System.out.println("TREE SIZE: " + b1.getSize());
 		System.out.println();
@@ -83,7 +90,7 @@ public class secondTester {
 		System.out.println();
 		
 		System.out.println(b1.rank(bNode1));
-		System.out.println(b1.select(5));
+		System.out.println(b1.select(1).getKey());
 		
 	}
 }
