@@ -179,6 +179,12 @@ public class BinarySearchTree {
 		else {
 			y.setRight(z);
 		}
+		
+		while(z != null) {
+			z.setSize(z.getSize() + 1);
+			z = z.getP();
+		}
+		
 		size++;
 
 	}
@@ -194,21 +200,40 @@ public class BinarySearchTree {
 	}
 	
 	private void delete(BinarySearchTree T, BSTNode z) {
+		BSTNode newNode = null;
 		if(z.getLeft() == null) {
 			transplant(T, z, z.getRight());
+			newNode = z.getP();
 		}else if(z.getRight() == null) {
 			transplant(T, z, z.getLeft());
+			newNode = z.getP();
 		}else {
 			BSTNode y = minimum(z.getRight());
 			if(y.getP() != z) {
 				transplant(T, y, y.getRight());
 				y.setRight(z.getRight());
 				y.getRight().setP(y);
+				newNode = y.getP();
+			}else {
+				newNode = y;
 			}
 			transplant(T, z, y);
 			y.setLeft(z.getLeft());
 			y.getLeft().setP(y);
 			
+		}
+		
+		while(newNode != null) {
+			int leftNum = 0;
+			int rightNum = 0;
+			if(newNode.getLeft() != null) {	
+				leftNum = newNode.getLeft().getSize();	
+			}
+			if(newNode.getRight() != null) {
+				rightNum = newNode.getRight().getSize();
+			}
+			newNode.setSize(leftNum + rightNum + 1);
+			newNode = newNode.getP();
 		}
 		size--;
 	}
