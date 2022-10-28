@@ -1,3 +1,4 @@
+
 public class secondTester {
 	public static void main(String[] args) {
 		BSTNode bNode1 = new BSTNode(12);
@@ -90,7 +91,26 @@ public class secondTester {
 		System.out.println();
 		
 		System.out.println(b1.rank(bNode1));
-		System.out.println(b1.select(1).getKey());
-		
+		System.out.println(b1.rank(bNode3));
+		System.out.println(b1.rank(bNode4));
+		System.out.println(b1.rank(bNode5));
+		System.out.println(b1.rank(bNode6));
+		System.out.println(b1.rank(bNode7));
+		System.out.println(b1.rank(bNode8));
+		System.out.println(b1.rank(bNode9));
+		System.out.println(b1.rank(bNode10));
+		System.out.println(b1.rank(bNode12));
+		System.out.println(b1.rank(bNode14));
+		System.out.println(b1.rank(bNode15));
+		System.out.println(b1.rank(bNode16));
+		System.out.println(b1.rank(bNode18));
+		System.out.println(b1.rank(bNode20));
+		System.out.println(b1.rank(bNode21));
+		System.out.println(b1.rank(bNode22));
+		System.out.println(b1.rank(bNode25));
+		System.out.println(b1.rank(bNode26));
+		System.out.println(b1.rank(bNode28));
+
+		System.out.println(b1.select(1).getKey());		
 	}
 }

@@ -88,11 +88,21 @@ public class BinarySearchTreeTester {
 		System.out.println();
 		System.out.println("SELECT ALGORITHM");
 
-		System.out.println("SELECTING 1: " + b1.select(1));
-		System.out.println("SELECTING 2: " + b1.select(2));
-		System.out.println("SELECTING 3: " + b1.select(3));
-		System.out.println("SELECTING 4: " + b1.select(4));
-		System.out.println("SELECTING 5: " + b1.select(5));
+		System.out.println("SELECTING 1: " + b1.select(1).getKey());
+		System.out.println("SELECTING 2: " + b1.select(2).getKey());
+		System.out.println("SELECTING 3: " + b1.select(3).getKey());
+		System.out.println("SELECTING 4: " + b1.select(4).getKey());
+		System.out.println("SELECTING 5: " + b1.select(5).getKey());
+		System.out.println("SELECTING 6: " + b1.select(6).getKey());
+		System.out.println("SELECTING 7: " + b1.select(7).getKey());
+		System.out.println("SELECTING 8: " + b1.select(8).getKey());
+		System.out.println("SELECTING 9: " + b1.select(9).getKey());
+		System.out.println("SELECTING 10: " + b1.select(10).getKey());
+		System.out.println("SELECTING 11: " + b1.select(11).getKey());
+		System.out.println("SELECTING 12: " + b1.select(12).getKey());
+		System.out.println("SELECTING 13: " + b1.select(13).getKey());
+		System.out.println("SELECTING 14: " + b1.select(14).getKey());
+		System.out.println("SELECTING 15: " + b1.select(15).getKey());
 		
 		System.out.println();
 		
@@ -101,7 +111,17 @@ public class BinarySearchTreeTester {
 		System.out.println("rank 1: " + b1.rank(bNode1));
 		System.out.println("rank 2: " + b1.rank(bNode2));
 		System.out.println("rank 3: " + b1.rank(bNode3));
+		System.out.println("rank 5: " + b1.rank(bNode5));
+		System.out.println("rank 6: " + b1.rank(bNode6));
+		System.out.println("rank 7: " + b1.rank(bNode7));
+		System.out.println("rank 9: " + b1.rank(bNode9));
 		System.out.println("rank 10: " + b1.rank(bNode10));
+		System.out.println("rank 11: " + b1.rank(bNode11));
+		System.out.println("rank 13: " + b1.rank(bNode13));
+		System.out.println("rank 14: " + b1.rank(bNode14));
+		System.out.println("rank 15: " + b1.rank(bNode15));
+		System.out.println("rank 17: " + b1.rank(bNode17));
+		System.out.println("rank 18: " + b1.rank(bNode18));
 		System.out.println("rank 19: " + b1.rank(bNode19));
 
 		System.out.println();
