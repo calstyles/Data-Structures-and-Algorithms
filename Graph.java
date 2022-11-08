@@ -84,9 +84,9 @@ public class Graph {
 	@Override
 	public String toString() {
 		String str = "";
-		for(int i = 0; i < nodes.length; i++) {
-			for(int j = 0; j < nodes.length; j++) {
-				str += edge[i][j] + "\t";
+		for(int i = 0; i < edge.length; i++) {
+			for(int j = 0; j < edge[i].length; j++) {
+				str += edge[i][j] + " ";
 			}
 			str += "\n";
 		}
