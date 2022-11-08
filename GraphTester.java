@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class Tester {
+public class GraphTester {
 	public static void main(String []args) {
 		boolean [][] edge1 = new boolean[6][10];
 		boolean [][] edge2 = new boolean[10][14];
