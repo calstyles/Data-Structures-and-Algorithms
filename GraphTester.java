@@ -1,4 +1,3 @@
-import java.util.Arrays;
 
 public class GraphTester {
 	public static void main(String []args) {
@@ -14,7 +13,6 @@ public class GraphTester {
 					edge1[i][j] = false;
 				}
 			}
-//			System.out.println(Arrays.toString(edge1[i]));
 		}
 		
 		for(int i = 0; i < 16; i++) {
@@ -25,7 +23,6 @@ public class GraphTester {
 					edge2[i][j] = true;
 				}
 			}
-//			System.out.println(Arrays.toString(edge2[i]));
 		}
 		
 		for(int i = 0; i < 14; i++) {
@@ -36,7 +33,6 @@ public class GraphTester {
 					edge3[i][j] = true;
 				}			
 			}
-//			System.out.println(Arrays.toString(edge3[i]));
 		}
 		
 		Graph g1 = new Graph(edge1);
@@ -69,7 +65,6 @@ public class GraphTester {
 					edge4[i][j] = false;
 				}
 			}
-//			System.out.println(Arrays.toString(edge4[i]));
 		}
 		
 		
@@ -81,7 +76,6 @@ public class GraphTester {
 					edge5[i][j] = false;
 				}	
 			}
-//			System.out.println(Arrays.toString(edge5[i]));
 		}
 		
 		for(int i = 0; i < 20; i++) {
@@ -92,7 +86,6 @@ public class GraphTester {
 					edge6[i][j] = false;
 				}	
 			}
-//			System.out.println(Arrays.toString(edge6[i]));
 		}
 		
 		Graph g4 = new Graph(edge4);
