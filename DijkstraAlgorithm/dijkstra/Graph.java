@@ -1,7 +1,8 @@
-
+import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Stack;
 
 public class Graph {
 	public List<Node> nodes;
@@ -12,49 +13,65 @@ public class Graph {
 		this.edges = edges;
 	}
 	
-	private void initializeSingleSource(int s) {
-		for(Node v : nodes) {
+	private void initializeSingleSource(Graph graph, Node s) {
+		for(Node v : graph.nodes) {
 			v.d = Integer.MAX_VALUE;
 			v.p = null;
 		}
-		nodes.get(s).d = 0;
+		s.d = 0;
 	}
 	
-	private void relax(Node u, Node v, boolean isRushHour) {
-		double w = 0;
-		for(Edge e : edges) {
-			if(e.source.equals(u) && e.target.equals(v)) {
-				w = e.getWeight(isRushHour);
-				break;
-			}
-		}
+	private void relax(Node u, Node v) {
 		if(u.d == Integer.MAX_VALUE) {
 			return;
 		}
-		Edge edge = v.getBackEdge(u);
-		if(v.d > (u.d + edge.getWeight(isRushHour))) {
-			v.d = (float) (u.d + edge.getWeight(isRushHour));
+		Edge edge = u.getBackEdge(v);
+		if(v.d > (float) (u.d + edge.getWeight())) {
+			v.d = (float) (u.d + edge.getWeight());
 			v.p = u;
 		}
 	}
 	
 	// TODO: Implement
 	public void doDijkstra(Node source, boolean isRushHour) {
-		int s = nodes.indexOf(source);
-		initializeSingleSource(s);
+		for(Edge edge : edges) {
+			edge.setIsRushHour(isRushHour);
+		}
+		List<Node> temp = new LinkedList<>(this.nodes);
+		initializeSingleSource(this, source);
 		Queue<Node> pq = new PriorityQueue<>();
         pq.addAll(nodes);
         while(pq.size() != 0) {
-        	Node u = pq.remove();
-        	for(Node v : nodes) {
-        		relax(u, v, isRushHour);
+        	Node u = pq.poll();
+        	for(Edge v : u.adjList) {
+        		relax(u, v.target);
         	}
+        	temp.remove(u);
+        	pq = new PriorityQueue<>(temp);
         }
 	}
+	
+
 	
 	// TODO: Implement
 	public void printDirections(Node source, Node destination, boolean isRushHour) {
 		doDijkstra(source, isRushHour);
+		Node tempNode = destination;
+		Stack<Node> st = new Stack<Node>();
+		while(tempNode != source.p) {
+			st.push(tempNode);
+			tempNode = tempNode.p;
+		}
+		while(!st.isEmpty()) {
+			Node n = st.pop();
+			if(st.size() == 1) {
+				System.out.println(n.name + " -> " + destination.name);
+				break;
+			}
+			System.out.print(n.name + " -> ");
+		}
+		System.out.println("Shortest Path Distance: " + destination.d);
+		System.out.println();
 	}
 	
 	private void printDashes(int numDashes) {

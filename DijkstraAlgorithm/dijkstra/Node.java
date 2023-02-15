@@ -7,29 +7,27 @@ public class Node implements Comparable<Node>{
 	public String name;
 	public Node p;
 	public float d;
-	public LinkedList<Edge> adjList;
+	public LinkedList<Edge> adjList = new LinkedList<Edge>();
 
 	
 	public Node(Integer id, String name) {
 		this.id = id;
 		this.name = name;
-		adjList = new LinkedList<Edge>();
 	}
 	
 	// TODO: Implement
 	public void addEdge(Edge edge) {
-		adjList.add(edge);
+		this.adjList.add(edge);
 	}
 	
 	// TODO: Implement
 	public Edge getBackEdge(Node node) {
-		Edge newEdge = null;
 		for(Edge e : adjList) {
 			if(e.target.equals(node)) {
-				e = newEdge;
+				return e;
 			}
 		}
-		return newEdge;
+		return null;
 	}
 	
 	@SuppressWarnings("unchecked")

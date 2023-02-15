@@ -32,12 +32,12 @@ public class Edge {
 	}
 	
 	
-	public double getWeight(boolean isRushHour) {
+	public Float getWeight() {
 		if(isRushHour) {
-			return ((double) length * congestionFactor)/((double) speedLimit * numLanes)/ 10.0;
-		}else {
-			return (double) length/((double) speedLimit * numLanes) / 10.0;
-		}
+            return (float) ((length * congestionFactor) / (speedLimit * numLanes * 10.0));
+        }else {
+            return (float) (length / (speedLimit * numLanes * 10.0)); 
+        }
 	}
 	
 	// Implemented for you:
@@ -46,7 +46,7 @@ public class Edge {
 		edgeString += this.name + "\t";
 		edgeString += (this.source != null) ? this.source.name + "\t" : "--\t";
 		edgeString += (this.target != null) ? this.target.name + "\t" : "--\t";
-		edgeString += this.getWeight(isRushHour) + "\t";
+		edgeString += this.getWeight() + "\t";
 		edgeString += this.numLanes + "\t";
 		edgeString += this.speedLimit + "\t";
 		edgeString += this.congestionFactor + "\t\t";
@@ -63,7 +63,7 @@ public class Edge {
 		JSONObject data = new JSONObject();
 		data.put("target", this.target.id);
 		data.put("source", this.source.id);
-		data.put("weight", this.getWeight(isRushHour));
+		data.put("weight", this.getWeight());
 		data.put("inTree", inTree);
 		data.put("name", this.name);
 		data.put("id", this.id);
